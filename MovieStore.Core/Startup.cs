@@ -8,7 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
+using MovieStore.Core.Data;
+using Microsoft.EntityFrameworkCore;
 namespace MovieStore.Core
 {
     public class Startup
@@ -24,6 +25,10 @@ namespace MovieStore.Core
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDbContext<MovieStoreContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("MovieDatabase")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

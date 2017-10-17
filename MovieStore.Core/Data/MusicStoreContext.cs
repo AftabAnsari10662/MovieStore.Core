@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MovieStore.Core.Data
 {
-    public class MusicStoreContext : DbContext
+    public class MovieStoreContext : DbContext
     {
-        public MusicStoreContext(
-            DbContextOptions<MusicStoreContext> options)
+        public MovieStoreContext(
+            DbContextOptions<MovieStoreContext> options)
             : base(options)
         { }
 
