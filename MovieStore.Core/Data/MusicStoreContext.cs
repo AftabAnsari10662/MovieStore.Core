@@ -20,7 +20,7 @@ namespace MovieStore.Core.Data
     {
         public int MovieId { get; set; }
         public string Title { get; set; }
-        public int RelaseYear { get; set; }
+        public int ReleaseYear { get; set; }
     }
 
 }
