@@ -40,7 +40,9 @@ namespace MovieStore.Core
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(builder => builder.WithOrigins("http://moviestorecore.azurewebsites.net"));
+            app.UseCors(builder => 
+            builder.WithOrigins("http://moviestorecore.azurewebsites.net")
+                   .AllowAnyHeader());
             app.UseMvc();
         }
     }
