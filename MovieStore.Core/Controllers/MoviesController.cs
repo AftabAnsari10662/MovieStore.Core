@@ -10,7 +10,7 @@ using MovieStore.Core.Data;
 namespace MovieStore.Core.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Movies")]
+    [Route("api/movies")]
     public class MoviesController : Controller
     {
         private readonly MovieStoreContext _context;
