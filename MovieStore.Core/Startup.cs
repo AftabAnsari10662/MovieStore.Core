@@ -32,7 +32,7 @@ namespace MovieStore.Core
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info{ Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
 
             services.AddDbContext<MovieStoreContext>(
@@ -58,9 +58,17 @@ namespace MovieStore.Core
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            app.UseCors(builder => 
-            builder.WithOrigins("http://moviestorecore.azurewebsites.net")
-                   .AllowAnyHeader());
+            //app.UseCors(builder => 
+            //builder.WithOrigins("http://moviestorecore.azurewebsites.net")
+            //       .AllowAnyHeader()
+            //       );
+
+            app.UseCors(builder => builder
+                                .AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                .AllowAnyHeader()
+                                .AllowCredentials());
+
             app.UseMvc();
         }
     }
