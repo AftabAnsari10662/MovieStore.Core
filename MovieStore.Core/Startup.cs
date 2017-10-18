@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MovieStore.Core.Data;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Swagger;
+
 namespace MovieStore.Core
 {
     public class Startup
@@ -27,6 +29,12 @@ namespace MovieStore.Core
             services.AddCors();
             services.AddMvc();
 
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info{ Title = "My API", Version = "v1" });
+            });
+
             services.AddDbContext<MovieStoreContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("MovieDatabase")));
@@ -40,6 +48,16 @@ namespace MovieStore.Core
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
             app.UseCors(builder => 
             builder.WithOrigins("http://moviestorecore.azurewebsites.net")
                    .AllowAnyHeader());
